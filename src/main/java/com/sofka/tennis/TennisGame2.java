@@ -25,44 +25,33 @@ public class TennisGame2 implements TennisGame
             score = setPointRes(P1point)+"-"+setPointRes(P2point);
         }
         
-        if (P1point > P2point && P2point >= 3)
+        if (isAdvantage(P1point,P2point))
         {
             score = "Advantage player1";
         }
         
-        if (P2point > P1point && P1point >= 3)
+        if (isAdvantage(P2point,P1point))
         {
             score = "Advantage player2";
         }
         
-        if (P1point>=4 && P2point>=0 && (P1point-P2point)>=2)
+        if (isWin(P1point,P2point))
         {
             score = "Win for player1";
         }
-        if (P2point>=4 && P1point>=0 && (P2point-P1point)>=2)
+        if (isWin(P2point,P1point))
         {
             score = "Win for player2";
         }
 
         return score;
     }
-    
-    public void SetP1Score(int number){
-        
-        for (int i = 0; i < number; i++)
-        {
-            P1Score();
-        }
-            
+
+    public boolean isWin(int p1, int p2){
+        return p1>=4 && p2>=0 && (p1-p2)>=2;
     }
-    
-    public void SetP2Score(int number){
-        
-        for (int i = 0; i < number; i++)
-        {
-            P2Score();
-        }
-            
+    public boolean isAdvantage(int p1, int p2) {
+        return  p1 > p2 && p2 >= 3;
     }
 
     public void P1Score(){
@@ -86,10 +75,6 @@ public class TennisGame2 implements TennisGame
 
     public boolean isEqualhigh(int p1, int p2){
         return p1 == p2 && p1>=3;
-    }
-
-    public boolean p1GreaterP2Zero(int p1, int p2){
-        return p1 > 0 && p2==0;
     }
 
     public String setPointRes(int point){
